@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/exercise.iml" filepath="$PROJECT_DIR$/.idea/exercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pyautogui/.idea/pyautogui.iml" filepath="$PROJECT_DIR$/../pyautogui/.idea/pyautogui.iml" />
+      <module fileurl="file://D:/sendApi/.idea/sendApi.iml" filepath="D:/sendApi/.idea/sendApi.iml" />
+      <module fileurl="file://D:/tryDRF/.idea/tryDRF.iml" filepath="D:/tryDRF/.idea/tryDRF.iml" />
+    </modules>
+  </component>
+</project>
