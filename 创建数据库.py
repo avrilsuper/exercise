@@ -44,7 +44,9 @@ dl_house_data = '''
  CREATE TABLE
 IF NOT EXISTS test.dl_house_data (
 	dl_user nvarchar (40),
-	dl_uuid nvarchar (40)
+	dl_uuid nvarchar (40),
+	check_time date,
+	ele_state nvarchar (10) default 1
 )
  '''
 ##创建信息表
@@ -56,7 +58,9 @@ IF NOT EXISTS test.dl_ammeter_user (
 	dl_status_date datetime,
 	phone nvarchar (40),
 	sms_status nvarchar (40),
-	sms_date datetime
+	sms_date datetime,
+	ele nvarchar (10),
+	check_time date
 )
 '''
 dl_base ='''
@@ -71,13 +75,49 @@ IF NOT EXISTS test.dl_base (
 	dump_id INT (11)
 )
 '''
+
+ele_day = '''
+CREATE TABLE
+IF NOT EXISTS test.ele_day (
+	id INT PRIMARY KEY auto_increment,
+	uuid VARCHAR (40),
+	use_ele VARCHAR (40),
+	check_time date
+)
+'''
+
+
+ele_day_date ='''
+CREATE TABLE
+IF NOT EXISTS test.ele_day_data (
+	id INT PRIMARY KEY auto_increment,
+	uuid VARCHAR (40),
+	ele VARCHAR (40),
+	ele_time datetime,
+	cz VARCHAR (40),
+	cz_time datetime,
+	check_time date
+)
+'''
+dl_house_uuid ='''
+CREATE TABLE
+IF NOT EXISTS test.dl_house_uuid (
+	id INT PRIMARY KEY auto_increment,
+	dl_user varchar (40),
+	dl_uuid varchar (40),
+	dl_house varchar (40)
+	)
+'''
 ##创建用户发送状态表
 
-# my_commit(sql_databa)
-# my_commit(dl_wu_uuid)
-# my_commit(dump_ele)
-# my_commit(wu_house_data)
-# my_commit(dl_house_data)
+my_commit(sql_databa)
+my_commit(dl_wu_uuid)
+my_commit(dump_ele)
+my_commit(wu_house_data)
+my_commit(dl_house_data)
 my_commit(dl_ammeter_user)
-# my_commit(dl_base)
+my_commit(dl_base)
+my_commit(ele_day)
+my_commit(ele_day_date )
+my_commit(dl_house_uuid)
 
