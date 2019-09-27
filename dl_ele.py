@@ -47,7 +47,7 @@ for i in base:
                         w_phone = my_server(wy_phone%uuid)
                         for c in w_phone:
                             phone = c[1]
-                            ins_amm = '''INSERT INTO test.dl_ammeter_user(dl_uuid,dl_status_date,phone,check_time,ele) VALUES('%s','%s','%s',curdate(),'%s')'''
+                            ins_amm = '''INSERT INTO test.dl_ammeter_user(dl_uuid,dl_status_date,phone,check_time,ele) VALUES('%s','%s','%s',now(),'%s')'''
                             amm = my_insert(ins_amm,(uuid,cz_dtime,phone,my_ele))
                             if len(phone) == 0:
                                 print('发送邮件','电量剩余：',my_ele)

@@ -80,6 +80,25 @@
 # print(alex.name)
 # print(alex.__dict__['name'])
 
+#
+# string = "good"  # 类型为字符串
+# print("string=%s" % string)  # 输出的打印结果为 string=good
 
-string = "good"  # 类型为字符串
-print("string=%s" % string)  # 输出的打印结果为 string=good
+import pymysql
+import pymssql
+
+sqlSerName = '10.0.1.113'
+sqlUser = 'sa'
+sqlPass = '123456'
+def sql_server():
+    '''
+    sqlserver连接处理
+    :param sql:
+    :return:
+    '''
+    conn = pymssql.connect(sqlSerName, sqlUser, sqlPass)
+    cursor = conn.cursor()
+    conn.close()
+    return
+
+print(sql_server())

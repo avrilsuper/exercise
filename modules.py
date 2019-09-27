@@ -4,8 +4,9 @@
 from config import *
 import pymysql
 import pymssql
-
-
+from pymysql import *
+import time
+tim = time.strftime("%Y-%m-%d %H:%M:%S")
 
 def sql_server(sql):
     '''
@@ -13,26 +14,38 @@ def sql_server(sql):
     :param sql:
     :return:
     '''
-    conn = pymssql.connect(sqlSerName, sqlUser, sqlPass)
-    cursor = conn.cursor()
-    cursor.execute(sql)
-    data = cursor.fetchall()
-    conn.close()
-    # print(data)
-    return data
+    try:
+        conn = pymssql.connect(sqlSerName, sqlUser, sqlPass)
+        cursor = conn.cursor()
+        cursor.execute(sql)
+    except InternalError:
+        rizhi('sql问题:'+sql)
+    except OperationalError:
+        rizhi('连接问题，账号'+sqlSerName)
+    else:
+        data = cursor.fetchall()
+        conn.close()
+        # print(data)
+        return data
 def sql_server2(sql):
     '''
     sqlserver连接处理
     :param sql:
     :return:
     '''
-    conn = pymssql.connect(sqlSerName2, sqlUser2, sqlPass2)
-    cursor = conn.cursor()
-    cursor.execute(sql)
-    data = cursor.fetchall()
-    conn.close()
-    # print(data)
-    return data
+    try:
+        conn = pymssql.connect(sqlSerName2, sqlUser2, sqlPass2)
+        cursor = conn.cursor()
+        cursor.execute(sql)
+    except InternalError:
+        rizhi('sql问题：'+sql)
+    except OperationalError:
+        rizhi('连接问题，账号:'+sqlSerName2)
+    else:
+        data = cursor.fetchall()
+        conn.close()
+        # print(data)
+        return data
 
 def my_server(sql):
     '''
@@ -40,12 +53,18 @@ def my_server(sql):
     :param sql:
     :return:
     '''
-    conn = pymysql.connect(mySqlName,myUser,myPass)
-    cursor = conn.cursor()
-    cursor.execute(sql)
-    data = cursor.fetchall()
-    conn.close()
-    return data
+    try:
+        conn = pymysql.connect(mySqlName,myUser,myPass)
+        cursor = conn.cursor()
+        cursor.execute(sql)
+    except InternalError:
+        rizhi('sql问题'+sql)
+    except OperationalError:
+        rizhi('连接问题,账号：'+mySqlName )
+    else:
+        data = cursor.fetchall()
+        conn.close()
+        return data
 
 def my_commit(sql):
     '''
@@ -53,11 +72,17 @@ def my_commit(sql):
     :param sql:
     :return:
     '''
-    conn = pymysql.connect(mySqlName,myUser,myPass)
-    cursor = conn.cursor()
-    cursor.execute(sql)
-    conn.commit()
-    conn.close()
+    try:
+        conn = pymysql.connect(mySqlName,myUser,myPass)
+        cursor = conn.cursor()
+        cursor.execute(sql)
+    except InternalError:
+        rizhi('sql问题'+sql)
+    except OperationalError:
+        print('连接问题,账号：'+mySqlName)
+    else:
+        conn.commit()
+        conn.close()
 
 def my_insert(sql,data):
     '''
@@ -66,11 +91,17 @@ def my_insert(sql,data):
     :param data:
     :return:
     '''
-    conn = pymysql.connect(mySqlName,myUser,myPass)
-    cursor = conn.cursor()
-    cursor.execute(sql%data)
-    conn.commit()
-    conn.close()
+    try:
+        conn = pymysql.connect(mySqlName,myUser,myPass)
+        cursor = conn.cursor()
+        cursor.execute(sql%data)
+    except InternalError:
+        rizhi('sql问题：'+sql)
+    except OperationalError:
+        rizhi('连接问题,账号：'+mySqlName)
+    else:
+        conn.commit()
+        conn.close()
 
 
 def dictt(x,y):
@@ -90,7 +121,10 @@ def dictt(x,y):
     return  wy_dl
 
 
-
+def rizhi(x):
+    f = open(r'日志.txt','a+')
+    f.write(tim+x+'\n')
+    f.close()
 
 
 
@@ -113,6 +147,4 @@ def dl_sms(phone,ele):
     print(returnStatus)
 
 # dl_sms('18310144977','100')
-
-
 

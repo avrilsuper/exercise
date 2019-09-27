@@ -15,13 +15,14 @@ for i in ele:
         print("dunm_ele已存在")
 
 
+
 # #获取电表userid插入数据库
 sql_userid = '''SELECT userid,homenum FROM kddz.dbo.eptouserlist WHERE userid is not NULL'''
 ins_dluuid = '''INSERT INTO test.dl_house_data(dl_user,dl_uuid) VALUES('%s','%s') '''
 for i in  sql_server(sql_userid):
     dl_user = i[0]
     uid = str(uuid.uuid5(namespace, dl_user)).replace('-', '')
-    user ='''SELECT dl_user FROM test.dl_house_data WHERE dl_user='%s' '''%dl_user
+    user ='''SELECT dl_user FROM test.dl_house_datadl_house_data WHERE dl_user='%s' '''%dl_user
     if my_server(user) == ():
         my_insert(ins_dluuid,(dl_user,uid))
     else:
@@ -58,9 +59,11 @@ for i in my_server(sl_uu):
 dl_us = '''SELECT id,dl_user FROM test.dl_house_uuid'''
 for i in my_server(dl_us):
     user = i[1]
+    print(user)
     sl_in = '''SELECT id,name FROM kddz.dbo.userlist WHERE id='%s' '''%user
     for x in sql_server(sl_in):
         house = x[1]
+        print(x)
         dl_name = x[1].split("-")
         lltt = {'L': '0101', 'A01': '01', 'A04': '02', 'A14': '03', 'A13': '04', 'A12': '05', 'A03': '06', 'A02': '07',
                 'A05': '08', 'A08': '09', 'A11': '10', 'A10': '11', 'A09': '12', 'A07': '13', 'A06': '14'}

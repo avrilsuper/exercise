@@ -45,8 +45,8 @@ dl_house_data = '''
 IF NOT EXISTS test.dl_house_data (
 	dl_user nvarchar (40),
 	dl_uuid nvarchar (40),
-	check_time date,
-	ele_state nvarchar (10) default 1
+	check_time datetime default   '2001-01-01 01:01:01'  ,
+	ele_state nvarchar (10) default '1'
 )
  '''
 ##创建信息表
@@ -60,7 +60,7 @@ IF NOT EXISTS test.dl_ammeter_user (
 	sms_status nvarchar (40),
 	sms_date datetime,
 	ele nvarchar (10),
-	check_time date
+	check_time datetime
 )
 '''
 dl_base ='''
@@ -82,7 +82,7 @@ IF NOT EXISTS test.ele_day (
 	id INT PRIMARY KEY auto_increment,
 	uuid VARCHAR (40),
 	use_ele VARCHAR (40),
-	check_time date
+	check_time datetime
 )
 '''
 
@@ -96,7 +96,7 @@ IF NOT EXISTS test.ele_day_data (
 	ele_time datetime,
 	cz VARCHAR (40),
 	cz_time datetime,
-	check_time date
+	check_time datetime
 )
 '''
 dl_house_uuid ='''
@@ -110,14 +110,14 @@ IF NOT EXISTS test.dl_house_uuid (
 '''
 ##创建用户发送状态表
 
-my_commit(sql_databa)
-my_commit(dl_wu_uuid)
-my_commit(dump_ele)
-my_commit(wu_house_data)
-my_commit(dl_house_data)
-my_commit(dl_ammeter_user)
-my_commit(dl_base)
+# my_commit(sql_databa)
+# my_commit(dl_wu_uuid)
+# my_commit(dump_ele)
+# my_commit(wu_house_data)
+# my_commit(dl_house_data)
+# my_commit(dl_ammeter_user)
+# my_commit(dl_base)
 my_commit(ele_day)
-my_commit(ele_day_date )
-my_commit(dl_house_uuid)
+# my_commit(ele_day_date )
+# my_commit(dl_house_uuid)
 
